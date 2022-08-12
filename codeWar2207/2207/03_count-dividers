@@ -1,0 +1,33 @@
+let isqrt = (n) => Math.floor(Math.sqrt(n))
+let div = (a, b) => Math.floor(a / b)
+let countDivisors = (n) =>
+  // [...Array(isqrt(n)).keys()].reduce((acc, cur) => acc + div(n, cur + 1), 0) * 2
+  countDivisors
+
+// .reduce((a, b) => a + div(n, b + 1), 0) * 2 -
+// isqrt(n) ** 2
+
+// console.log(countDivisors(5))
+
+// function countDivisors(n) {
+//   let r = n ** 0.5,
+//     s = 0
+//   console.log(r)
+//   for (let i = 1; i < r; i++) {
+//     s += Math.floor(n / i)
+//     console.log((n / i) | 0)
+//   }
+//   return 2 * s - Math.floor(r) ** 2
+// }
+
+// function count(n) {
+//   let sqrt = (n ** 0.5) | 0
+//   let k = 0
+//   for (let i = 1; 1 < sqrt; i++) {
+//     console.log(n / i)
+//     k += Math.floor(n / i)
+//   }
+//   return 2 * k - Math.floor(r) ** 2
+// }
+
+console.log(countDivisors(100))

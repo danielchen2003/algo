@@ -1,0 +1,130 @@
+// function decompose(n) {
+// your code
+// 50*50
+// 33   22 11
+// 44 33 22 11
+
+// n*n  - n*n-1 >=0?  n--  n*n-1 >?  n >0
+//   const res = []
+//   let full = n * n
+//   let reminder = full
+//   while (n > 1 && reminder > 0) {
+//     if (reminder - (n - 1) * (n - 1) > 0) {
+//       res.push(n - 1)
+//       reminder -= (n - 1) * (n - 1)
+//       console.log(reminder)
+//       n--
+//     } else {
+//       n--
+//       continue
+//     }
+//   }
+//   return res
+// }
+
+// const decompose = (n) => {
+//   const result = decomposer(n, n * n)
+//   return result ? result.slice(0, -1) : result
+// }
+
+// const decomposer = (n, r) => {
+//   if (!r) return [n]
+//   // console.log(n, r)
+//   for (let i = n - 1; i > 0; i--) {
+//     const x = r - i * i
+
+//     if (x >= 0) {
+//       const y = decomposer(i, x)
+//       // console.log(x, y)
+//       if (y) return y.concat(n)
+//     }
+//   }
+
+//   return null
+// }
+
+// const decomposer = (n, r) => {
+//   if (!r) return [n]
+//   // console.log(n, r)
+//   for (let i = n - 1; i > 0; i--) {
+//     const x = r - i * i
+
+//     if (x >= 0) {
+//       const y = decomposer(i, x)
+//       // console.log(x, y)
+//       if (y) return y.concat(n)
+//     }
+//   }
+//   return null
+// }
+
+// const decomposer = (n, reminder) => {
+//   if (!reminder) return [n] // recuision 递归函数先返回底层
+//   for (let i = n - 1; i > 0; i--) {
+//     const changshireminder = reminder - i * i
+//     if (changshireminder >= 0) {
+//       // console.log(changshireminder)
+//       const y = decomposer(i, changshireminder)
+//       console.log(y)
+//       // if (y) return y.concat(n)
+//       if (y) return y.concat(n)
+//     }
+//   }
+//   return null
+// }
+
+console.log(decomposer(50, 2500))
+
+// though main goal was simplicity and readability
+
+function decompose(n, n2 = n * n) {
+  let arr = []
+
+  let i = n - 1
+  if (i > almostRoot(n2)) i = almostRoot(n2)
+
+  while (i > 0) {
+    let i2 = i * i
+    let difference = n2 - i2
+
+    if (difference > 0) {
+      let result = decompose(i, difference)
+      if (result) {
+        arr = arr.concat(result)
+        arr.push(i)
+        return arr
+      }
+    }
+
+    if (difference === 0) {
+      arr.push(i)
+      return arr
+    }
+
+    i--
+  }
+
+  return null
+}
+
+function almostRoot(num) {
+  return Math.floor(Math.sqrt(num))
+}
+
+function decompose(n) {
+  const res = decomposer(n, n * n)
+  return res ? res.slice(0, -1) : res
+}
+function decomposer(n, r) {
+  if (!r) return [n] // 递归返回1
+
+  for (let i = n - 1; i > 0; i--) {
+    const currentreminder = r - i * i
+    if (currentreminder >= 0) {
+      const y = decomposer(i, currentreminder)
+      if (y) return y.concat(n)
+    }
+  }
+  return null
+}
+console.log(decompose(50))

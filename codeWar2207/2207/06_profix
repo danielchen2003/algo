@@ -1,0 +1,11 @@
+function postfixCalculate(s){
+  q = []
+  for (e of s.split(' ')){
+    if ('+-/*'.includes(e)){
+      [a,b] = [q.pop(),q.pop()]
+      q.unshift(eval(`${b}${e}${a}`))
+    }
+    else q.push(e)
+  }
+  return q[0]
+}

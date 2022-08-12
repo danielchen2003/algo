@@ -1,0 +1,51 @@
+let a = [1, 2, 3, 4]
+console.log(a)
+console.log([...a])
+let b = [...a]
+console.log(b)
+let c = [a]
+console.log(c)
+let e = { aa: "test", bb: { cc: "test2", dd: "test3" } }
+let {
+  aa,
+  bb: { cc, dd: ee },
+} = e
+console.log(ee)
+const f = [...a, ...b]
+console.log(f)
+const g = [...a, b]
+console.log(g)
+const h = { ...e, bb: "ff" }
+console.log(h)
+const p = [...a, { ...e }]
+console.log(p)
+
+import React, { useState } from "react"
+
+function App() {
+  const [answer] = useState("Yes")
+  return (
+    <div>
+      <h1>Is state important to know? {answer}</h1>
+    </div>
+  )
+}
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      answer: "Yes",
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Is state important to know? {this.state.answer}</h1>
+      </div>
+    )
+  }
+}
+
+export default App

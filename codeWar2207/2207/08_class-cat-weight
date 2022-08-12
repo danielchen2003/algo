@@ -1,0 +1,111 @@
+// Let's make a Cat constructor!
+var Cat = (function () {
+  var cats = {
+    count: 0,
+    totalWeight: 0,
+    avgWeight: 0,
+  }
+  //使用函数去定义一个obj cats是类 cat是实力， react component是类 每一个map出来的就是实力
+  function Cat(name, weight) {
+    if (!name || !weight) {
+      throw new Error("Both `name` and `weight` should be provided")
+    }
+    cats.count++
+    this.name = name
+
+    Object.defineProperty(this, "weight", {
+      get: function () {
+        console.log(`sadas` + this._weight)
+        return this._weight || 0
+      },
+      set: function (val) {
+        console.log("what" + val)
+        cats.totalWeight = cats.totalWeight - this.weight + val
+        cats.avgWeight = cats.totalWeight / cats.count
+        return (this._weight = val)
+      },
+    })
+
+    this.weight = weight
+  }
+
+  Cat.averageWeight = function () {
+    return cats.avgWeight
+  }
+  Cat.totalWeight = function () {
+    return cats.totalWeight
+  }
+
+  return Cat
+})()
+
+// let Cat = (function () {
+//   let cats = {
+//     counts: 0,
+//     averageWeight: 0,
+//     totalWeight: 0,
+//   }
+//   function Cat(name, weight) {
+//     if (!name || !weight) throw new Error("miss props")
+//     this.name = name
+//     cats.counts++
+//     this.weight = weight
+//     Object.defineProperty(
+//       (this,
+//       "weight",
+//       {
+//         get: function () {
+//           return this._weight || 0
+//         },
+//         set: function (value) {
+//           cats.totalWeight = cats.totalWeight - this.weight + val
+//           cats.avgWeight = cats.totalWeight / cats.counts
+//           return (this._weight = val)
+//         },
+//       })
+//     )
+//   }
+//   Cat.averageWeight = function () {
+//     return cats.avgWeight
+//   }
+//   return Cat
+// })()
+
+garfield = new Cat("garfield", 25)
+console.log(Cat.averageWeight()) // 25
+
+felix = new Cat("felix", 15)
+console.log(Cat.averageWeight()) // now 20
+// console.log(Cat.totalWeight())
+
+var Cat = (function () {
+  var cats = []
+  var constructor = function (name, weight) {
+    if (typeof name == "undefined" || typeof weight == "undefined") {
+      throw Error("Must specify a name and a weight")
+    }
+    Object.defineProperty(this, "name", {
+      get: function () {
+        return name
+      },
+    })
+    Object.defineProperty(this, "weight", {
+      get: function () {
+        return weight
+      },
+      set: function (x) {
+        weight = x
+        return weight
+      },
+    })
+    cats.push(this)
+  }
+  constructor.averageWeight = function () {
+    return (
+      cats.reduce(function (sum, cat) {
+        return sum + cat.weight
+      }, 0) / cats.length
+    )
+  }
+  return constructor
+})()
