@@ -1,0 +1,61 @@
+//643. 子数组最大平均数 I
+//办法一 reduce
+//办法2 slice
+
+//窗口 -1 +1
+// var findMaxAverage = function (nums, k) {
+//   //第一步用slice 切香肠
+//   //第二部 用reudce ++ / 平均数
+//   if (nums.length <= k) return nums.reduce((a, b) => a + b) / nums.length
+
+//   let max = -Infinity
+
+//   for (var i = 0; i + k <= nums.length; i++) {
+//     let cursum = nums.slice(i, i + k) // O N
+//     let curave = cursum.reduce((a, b) => a + b) / k // O N
+//     max = Math.max(max, curave)
+//   }
+//   return max
+// }
+
+var findMaxAverage = function (nums, k) {
+  //第二部 用reudce ++ / 平均数 一个初始值
+  if (nums.length <= k) return nums.reduce((a, b) => a + b, 0) / nums.length
+
+  let sum = nums.slice(0, k).reduce((a, b) => a + b, 0)
+  let maxsum = sum
+
+  console.log(sum)
+  // for (var i = 1; i + k <= nums.length; i++) {
+  //   let curavg = (sum - nums[i - 1] + nums[i + k - 1]) / k
+
+  //   max = Math.max(max, curavg)
+  // }
+
+  for (let i = k; i < nums.length; i++) {
+    sum = sum - nums[i - k] + nums[i]
+    maxsum = Math.max(sum, maxsum)
+  }
+  return maxsum / k
+}
+let nums = [0, 1, 1, 3, 3, 3, 3]
+let k = 4
+console.log(findMaxAverage(nums, k))
+
+var findMaxAverage = function (nums, k) {
+  let sum = 0
+  const n = nums.length
+  for (let i = 0; i < k; i++) {
+    sum += nums[i]
+  }
+  // console.log(sum)
+  // let maxSum = sum
+  for (let i = k; i < n; i++) {
+    sum = sum - nums[i - k] + nums[i]
+    maxSum = Math.max(maxSum, sum)
+  }
+  return maxSum / k
+}
+// let nums = [0, 1, 1, 3, 3, 3, 3]
+// let k = 4
+// console.log(findMaxAverage(nums, k))
