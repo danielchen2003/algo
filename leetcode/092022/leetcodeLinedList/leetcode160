@@ -1,0 +1,12 @@
+var getIntersectionNode = function(headA, headB) {
+    if(headA ===null || headb===null) return null
+    const nodeA =headA
+    const nodeB = headB
+    while(nodeA !==nodeB){
+      nodeA = nodeA !== null ? nodeA.next : headB
+      nodeB = nodeB !== null ? nodeB.next : headA
+    }
+    return nodeA
+    
+  };
+  //两个链表香蕉

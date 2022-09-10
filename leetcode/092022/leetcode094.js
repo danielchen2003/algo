@@ -1,4 +1,4 @@
-var inorderTraversal = function(root) {
+
 
   
 	var inorderTraversal = function (root) {
@@ -24,4 +24,3 @@ var inorderTraversal = function(root) {
 
 
   
-};

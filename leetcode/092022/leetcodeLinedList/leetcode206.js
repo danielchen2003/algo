@@ -274,6 +274,24 @@ class SinglyLinkedList {
   
   reverse3() {
     //第一步换头
+    
+    const visualize = () =>
+		createGraphFromPointers(
+			{
+				last,
+				"list.head": this.head,
+				"list.tail": this.tail,
+			},
+			i => ({
+				id: i.id,
+				label: i.name,
+				color: finished.has(i) ? "lime" : "lightblue",
+				edges: [
+					{ to: i.next!, label: "next", color: "lightblue" },
+					{ to: i.prev!, label: "prev", color: "lightgray" },
+				].filter(r => !!r.to),
+			})
+		);
     let node = this.head;
     this.head = this.tail;
     this.tail = node;
@@ -284,11 +302,23 @@ class SinglyLinkedList {
       node.next = prev;
       prev = node;
       node= next;// node move 到下一个节点
-      
     }
+    return this
   }
-  
-  
+//   reverse4(){
+//   const reverseListRec= ()=> {
+//     if (this.head == null || this.head.next == null) {
+//         return head;
+//     }
+//     const newHead = reverseListRec(this.head.next);
+//     this.head.next.next = this.head;
+//     this.head.next = null;
+//     return newHead;
+// };
+// reverseListRec()
+//   }
+
+
     print(){
       var arr =[];
       var current =this.head
@@ -338,3 +368,45 @@ console.log(newSLL.print())
 
 
 
+
+
+ /**
+//      * 以链表1->2->3->4->5举例
+//      * @param head
+//      * @return
+//      */
+//   public ListNode reverseList(ListNode head) {
+//     if (head == null || head.next == null) {
+//         /*
+//             直到当前节点的下一个节点为空时返回当前节点
+//             由于5没有下一个节点了，所以此处返回节点5
+//          */
+//         return head;
+//     }
+//     //递归传入下一个节点，目的是为了到达最后一个节点
+//     // ListNode newHead = reverseList(head.next);
+//             /*
+//         第一轮出栈，head为5，head.next为空，返回5
+//         第二轮出栈，head为4，head.next为5，执行head.next.next=head也就是5.next=4，
+//                   把当前节点的子节点的子节点指向当前节点
+//                   此时链表为1->2->3->4<->5，由于4与5互相指向，所以此处要断开4.next=null
+//                   此时链表为1->2->3->4<-5
+//                   返回节点5
+//         第三轮出栈，head为3，head.next为4，执行head.next.next=head也就是4.next=3，
+//                   此时链表为1->2->3<->4<-5，由于3与4互相指向，所以此处要断开3.next=null
+//                   此时链表为1->2->3<-4<-5
+//                   返回节点5
+//         第四轮出栈，head为2，head.next为3，执行head.next.next=head也就是3.next=2，
+//                   此时链表为1->2<->3<-4<-5，由于2与3互相指向，所以此处要断开2.next=null
+//                   此时链表为1->2<-3<-4<-5
+//                   返回节点5
+//         第五轮出栈，head为1，head.next为2，执行head.next.next=head也就是2.next=1，
+//                   此时链表为1<->2<-3<-4<-5，由于1与2互相指向，所以此处要断开1.next=null
+//                   此时链表为1<-2<-3<-4<-5
+//                   返回节点5
+//         出栈完成，最终头节点5->4->3->2->1
+//      */
+//     head.next.next = head;
+//     head.next = null;
+//     return newHead;
+// }

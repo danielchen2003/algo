@@ -42,4 +42,4 @@ function longestSubstringOf(s) {
 s = "baacabd"
 console.log(longestSubstringOf(s))
 
-moduel.export =isvaild()
+// moduel.export =isvaild()
