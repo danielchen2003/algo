@@ -9,14 +9,7 @@ var widthOfBinaryTree = function (head) {
   let curLevel = 1 // 手动统计当前1层以后记录当前层数
   let curLevelWidth = 0
   // 手动初始化当前为0宽
-  let width = BigInt(0)
-
-  if (root) {
-    width = BigInt(1)
-    queue.push(root)
-    root.val = BigInt(1) // 从 1 开始编号
-  }
-
+  let max = 1
   while (q.length !== 0) {
     //可以说是bfs宽度搜索的travelsal 标准 格式yong queue
     let cur = q.shift()
@@ -56,7 +49,9 @@ var widthOfBinaryTree = function (root) {
     for (let i = 0; i < len; i++) {
       let [node, index] = queue.shift()
       if (node.left) {
+        //更新的时候和最大的时候
         queue.push([node.left, (index * 2) % Number.MAX_SAFE_INTEGER])
+        //! 这个就是当前节点的开头和结尾
       }
       if (node.right) {
         queue.push([node.right, (index * 2 + 1) % Number.MAX_SAFE_INTEGER])
@@ -71,3 +66,41 @@ var widthOfBinaryTree = function (root) {
   }
   return max
 }
+
+var widthOfBinaryTree = function (head) {
+  if (head == null) {
+    return 0
+  }
+  let level=0;
+  const queue = []
+  queue.push(head)
+  let curEnd = head
+  let nextEnd = null
+  let max = 0
+  let curLevelNodes = 0
+  while (queue.length !== 0) {
+    let cur = queue.shift()
+    if (cur.left !== null) {
+      queue.push(cur.left)
+      nextEnd = cur.left
+    }
+    if (cur.right !== null) {
+      queue.push(cur.right)
+      nextEnd = cur.right
+    }
+    //统计当前层书节点
+    curLevelNodes++
+    if (cur === curEnd) {
+      //每一次换层需要的操作
+      level++;
+      max = Math.max(max, curLevelNodes)
+      curLevelNodes = 0
+      curEnd = nextEnd
+    }
+  }
+  return level %2 ===0 ?  level**2 +1 : level**2 
+}
+
+
+有带null 和不带null的两种
+带null 的话就只要计算深度 **2就可以了
