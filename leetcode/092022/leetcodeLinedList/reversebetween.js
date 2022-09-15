@@ -18,10 +18,11 @@ ListNode reverseN(ListNode head, int n) {
 
 
 var reverseBetween = function(head, left, right) {
-  let node = head 
+ if(head ===null)
   
   let dummy = new ListNode(-1)
   dummy.next = head;
+  let pre = dummy
   //! 第一个for loop  遍历找到起点
   for(let i =1; i<m ;i++){
     pre =  pre.next
@@ -29,14 +30,14 @@ var reverseBetween = function(head, left, right) {
   let cur = pre.next
   //! 第2个for loop  遍历中间点并且换尖头
   for(let i =m; i<n ;i++){
-    // let next = cur.next 
-    // cur.next = next.next
-    // next.next = prev.next
-    // prev.next = next
     let next = cur.next 
-    cur.next = pre 
-    pre = cur.next
-    cur = next
+    cur.next = next.next
+    next.next = prev.next
+    prev.next = next
+    // let next = cur.next 
+    // cur.next = pre 
+    // pre = cur.next
+    // cur = next
     
     
   }
@@ -62,3 +63,27 @@ var reverseBetween = function(head, left, right) {
   }
   return dummy_node.next;
 };
+
+
+
+var reverseBetween = function(head, left, right) {
+  let dummy_node = new ListNode(-1);
+   dummy_node.next =head
+  let leftprev = dummy_node
+  let cur = pre.next
+  for(let i=0 ;i < left-1;i++){
+    leftprev= leftprev.next
+    cur =cur.next
+  }
+  let pre = null 
+  for(let i =0;  i< right-left+1  ;i++){
+    let next = cur.next
+    cur.next = pre
+    
+    pre = cur
+    cur = next
+  }
+  leftprev.next.next = cur
+  leftprev.next = pre 
+  return dummy_node.next
+}
