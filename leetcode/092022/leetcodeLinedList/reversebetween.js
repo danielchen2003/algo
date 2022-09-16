@@ -87,3 +87,50 @@ var reverseBetween = function(head, left, right) {
   leftprev.next = pre 
   return dummy_node.next
 }
+
+
+var reverseBetween = function(head, left, right) {
+  let dummy = new ListNode(-1)
+  let pre = dummy
+  dummy.next =head
+ for(let i=0; i<left ;i++){
+     pre= pre.next
+ }
+  let cur =pre.next
+  
+  for(let i=0;i<right-left;i++){
+      let next = cur.next
+      cur.next = pre.next
+      pre.next = cur
+      cur = next
+  }
+  pre.next = cur
+  
+  
+  return dummy.next
+};
+
+
+var isPalindrome = function (head) {
+  let fast = head
+  let slow = head
+  while (fast && fast.next) {
+    fast = fast.next.next
+    slow = slow.next
+  }
+
+    if (fast) {
+    slow = slow.next
+  }
+  //翻转列表
+  slow = reverse(slow)
+  fast = head
+  while (slow) {
+    if (slow.val !== fast.val) {
+      return false
+    }
+    slow = slow.next
+    fast = fast.next
+  }
+  return true
+}
