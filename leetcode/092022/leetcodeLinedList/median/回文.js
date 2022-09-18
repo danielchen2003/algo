@@ -16,7 +16,15 @@ var isPalindrome = function (s) {
   }
 }
 
-
 var isPalindrome = function (s) {
-  let regex = 
+  let regex = /^[a-z0-9]/g
+  s.replace(regex, "")
+  let j = s.length - 1
+  let i = 0
+  while (i < j) {
+    if (s[i] !== s[j]) {
+      return false
+    }
+  }
+  return true
 }
