@@ -83,14 +83,96 @@ var binaryTreePaths = function (root) {
   let res = []
   function helper(root, curpath) {
     //什么都没有了就返回
-    if (!root.left && !root.right) {
+    if (root.left === null && root.right === null) {
       res.push(curpath)
       return
     }
-    curpath += node.val + "->"
+    curpath += root.val + "->"
     root.left && helper(root.left, curpath)
     root.right && helper(root.right, curpath)
   }
   helper(root, "")
   return res
+}
+
+var binaryTreePaths = function (root) {
+  if (!root) return []
+  const stack = [root],
+    paths = [""],
+    res = []
+  while (stack.length) {
+    const node = stack.pop()
+    let path = paths.pop()
+    if (!node.left && !node.right) {
+      // 到叶子节点终止, 添加路径到结果中
+      res.push(path + node.val)
+      continue
+    }
+    path += node.val + "->"
+    if (node.right) {
+      // 右节点存在
+      stack.push(node.right)
+      paths.push(path)
+    }
+    if (node.left) {
+      // 左节点存在
+      stack.push(node.left)
+      paths.push(path)
+    }
+  }
+  return res
+}
+
+var binaryTreePaths = function (root) {
+  if (!root) return []
+  let res = []
+  let stack = [root]
+  let paths = [""]
+  while (stack.length !== null) {
+    let node = stack.pop()
+    let path = paths.pop()
+    if (!node.left && !node.right) {
+      res.push(path + node.val)
+      continue
+    }
+    path += node.val + "->"
+    if (node.right) {
+      stack.push(node.right)
+      paths.push(path)
+    }
+    if (node.left) {
+      stack.push(node.left)
+      paths.push(path)
+    }
+  }
+
+  return res
+}
+
+var sumOfLeftLeaves = function (root) {
+  //采用层序遍历
+  if (root === null) {
+    return null
+  }
+  let queue = []
+  let sum = 0
+  queue.push(root)
+  while (queue.length !== 0) {
+    let level = queue.length
+
+    let node = queue.shift()
+    if (
+      node.left !== null &&
+      node.left.left === null &&
+      node.left.right === null
+    ) {
+      //左不为空  左边的左边为空 左边的右边为空
+      //   1
+      // 1
+      sum += node.left.val
+    }
+    node.left && queue.push(node.left)
+    node.right && queue.push(node.right)
+  }
+  return sum
 }
