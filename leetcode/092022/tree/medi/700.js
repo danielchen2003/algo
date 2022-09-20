@@ -24,3 +24,15 @@ var searchBST = function (root, val) {
   }
   return searchBST(val < root.val ? root.left : root.right, val)
 }
+
+var searchBST = function (root, val) {
+  let res = null
+  function helper(root) {
+    if (!root) return null
+    if (root.val === val) return root
+    if (root.val > val) helper(root.left)
+    else helper(root.right)
+  }
+  helper(root)
+  return res
+}
