@@ -33,7 +33,3 @@ TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
   return t1;
 }
 
-作者：carlsun-2
-链接：https://leetcode.cn/problems/merge-two-binary-trees/solution/dai-ma-sui-xiang-lu-dai-ni-xue-tou-er-ch-kwlh/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
