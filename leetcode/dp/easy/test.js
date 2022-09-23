@@ -1,17 +1,20 @@
-let i = 10
-while (i !== 20) {
-  console.log(++i)
-}
+// let i = 10
+// while (i !== 20) {
+//   console.log(++i)
+// }
 // console.log(i)
 
 var minCostClimbingStairs = function (cost) {
-  const dp = [cost[0], cost[1]]
+  pre = cost[0]
+  cur = cost[1]
 
   for (let i = 2; i < cost.length; i++) {
-    dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i])
+    next = Math.min(pre + cost[i], cur + cost[i])
+    pre = cur
+    cur = next
   }
-  console.log(dp)
-  return Math.min(dp[cost.length - 1], dp[cost.length - 2])
+  // console.log(dp)
+  return Math.min(pre, cur)
 }
-cost = [1, 100, 100, 1, 1, 100, 1, 1, 100, 1]
-minCostClimbingStairs(cost)
+cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+console.log(minCostClimbingStairs(cost))
