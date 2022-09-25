@@ -66,7 +66,7 @@ let a = [100, -1, -2, 5, 3, -4]
 console.log(maxSubArray2(a))
 
 var maxSubArray = function (nums) {
-  //维护两个
+  //维护两个变量
   let res = nums[0]
   let pre = 0
   for (let num of nums) {
