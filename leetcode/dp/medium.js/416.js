@@ -137,3 +137,5 @@ var canPartition = function (nums) {
 let nums = [1, 5, 11, 5]
 
 console.log(canPartition(nums))
+
+var canPartition = function (nums) {}
