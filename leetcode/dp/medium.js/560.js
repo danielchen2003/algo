@@ -115,47 +115,40 @@ console.log(subarraySum3(nums, k))
 //   return res
 // }
 var subarraySum = function (nums, k) {
-  let acc =0
-  let map =new Map()
-  map.set(0,1)
-  let res =0
-  for(let num of nums){
-    acc +=nums
-    let cur = sum -acc
-    if(map.has(cur)){
-      res+= map.get(cur)
+  let acc = 0
+  let map = new Map()
+  map.set(0, 1)
+  let res = 0
+  for (let num of nums) {
+    acc += nums
+    let cur = sum - acc
+    if (map.has(cur)) {
+      res += map.get(cur)
     }
-      if(map.has(acc)){
-        map.set(acc,1)
-      }else{
-        map.set(acc,map.get(acc)+1)
-      }
+    if (map.has(acc)) {
+      map.set(acc, 1)
+    } else {
+      map.set(acc, map.get(acc) + 1)
     }
-    
-    
   }
-  return res
-  
 }
 
-
 var subarraySum = function (nums, k) {
-  let acc =0
-    let res =0
-    let map = new Map()
-    map.set(0,1)
-    for(let num of nums){
-        acc += num
-        let cur = k - acc 
-        if(map.has(cur)){
-            res += map.get(cur)
-        }
-            if(map.has(acc)){
-                map.set(acc,map.get(acc)+1)
-            }else{
-                map.set(acc,1)
-            }
-        
+  let acc = 0
+  let res = 0
+  let map = new Map()
+  map.set(0, 1)
+  for (let num of nums) {
+    acc += num
+    let cur = k - acc
+    if (map.has(cur)) {
+      res += map.get(cur)
     }
-    return res
+    if (map.has(acc)) {
+      map.set(acc, map.get(acc) + 1)
+    } else {
+      map.set(acc, 1)
+    }
+  }
+  return res
 }
