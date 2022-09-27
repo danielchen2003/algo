@@ -6,6 +6,17 @@ var sumZero = function (n) {
     sum += i
   }
   res.push(-sum)
-
+  // console.log(res)
   return res
+}
+console.log(sumZero(2))
+
+var reverseWords = function (s) {
+  let arr = s.split(" ")
+  arr.forEach((x, i) => {
+    let word = x.split("")
+    word.reverse()
+    return word.join("")
+  })
+  return arr.join(" ")
 }
