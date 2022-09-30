@@ -32,14 +32,45 @@ var fourSum = function (nums, target) {
         continue
       }
       tmp.push(nums[i])
+      console.log(tmp)
       dfs(i + 1, count - 1, target - nums[i])
       tmp.pop()
     }
   }
-};
+}
+let nums = [1, 0, -1, 0, -2, 2],
+  target = 0
+console.log(fourSum(nums, target))
 
+// var fourSum = function (nums, target) {
+//   let list = []
+//   let len = nums.length
+//   let tmp = []
 
-作者：1105389168
-链接：https://leetcode.cn/problems/4sum/solution/si-shu-zhi-he-by-1105389168-y7b9/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+//   nums.sort((a, b) => a - b)
+
+//   dfs(0, 4, target)
+//   return list
+
+//   function dfs(index, count, target) {
+//     if (count === 0 && target === 0) {
+//       list.push([...tmp])
+//       return
+//     }
+//     //身下数字已经不够了比如我有3count 剩下2个数字3个数 就剪掉
+//     if (len - index < count) {
+//       return
+//     }
+//     if (target < count * nums[index]) return
+//     if (target > count * nums[len - 1]) return
+//     //起重复
+//     for (let i = index; i < len; i++) {
+//       if (i > index && nums[i] === nums[i - 1]) {
+//         continue
+//       }
+//       tmp.push(nums[i])
+//       dfs(i + 1, count - 1, target - nums[i])
+//       tmp.pop()
+//     }
+//   }
+// }
