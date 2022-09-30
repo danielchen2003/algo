@@ -143,3 +143,61 @@ var numIslands = function(grid) {
   }
 }
   
+
+
+var numIslands = function(grid) {
+  //深度优先
+  let count = 0;
+  let m = grid.length;
+  let n = grid[0].length;
+  const dfs = (i, j) => {
+      if(i < 0 || j < 0 || i >= m || j >= n || grid[i][j] === '0') return;//下标越界或不是陆地，返回
+      grid[i][j] = '0';//将陆地置为水，避免后续访问重复计算这个位置
+      //检验它的上下左右方向有没有陆地
+      dfs(i + 1, j);
+      dfs(i - 1, j);
+      dfs(i, j + 1);
+      dfs(i, j - 1);
+  }
+  for(let i = 0; i < m; i++) {
+      for(let j = 0; j < n; j++) {
+          if(grid[i][j] === '1') {//找到陆地
+              dfs(i, j);//找到这个陆地所属的一整块岛屿，整个岛屿原本的的'1'都被置为'0'
+              count++;//岛屿数量增加
+          }
+      }
+  }
+  return count;
+};
+
+var numIslands = function(M) {
+  let num = 0
+  const D = [[-1, 0], [0, -1], [1, 0], [0, 1]]
+  const [row, col] = [M.length, M[0].length]
+  for (let i = 0; i < row; i ++) {
+      for (let j = 0; j < col; j ++) {
+          if (M[i][j] === '1') {
+              num ++
+              BFS(i, j)
+          }
+      }
+  }
+  return num
+
+  function BFS(i, j) {
+      const q = []
+      q.push([i, j])
+      while (q.length > 0) {
+          const [x, y] = q.pop()
+          M[x][y] = 'E'
+          for (const [dx, dy] of D) {
+              const [nx, ny] = [x + dx, y + dy]
+              if (isLand(nx, ny)) q.push([nx, ny])
+          }
+      }
+  }
+
+  function isLand(nx, ny) {
+      return nx >= 0 && nx < row && ny >= 0 && ny < col && M[nx][ny] === '1'
+  }
+};
