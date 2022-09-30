@@ -73,3 +73,20 @@ function maxDepth(root) {
   let right = maxDepth(root.right)
   return Math.max(left, right) + 1
 }
+
+let res = {
+  isBalancedTree: true,
+}
+
+res.isBalancedTree = false
+
+console.log(res.isBalancedTree)
+
+
+bool isBalanced(TreeNode*&root)
+{
+    if (!root)
+        return true;
+    return abs((height(root->left) - height(root->right)) <= 1) && isBalanced(root->left) && isBalanced(root->right);
+}
+
