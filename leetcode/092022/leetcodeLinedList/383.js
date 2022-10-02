@@ -4,6 +4,7 @@ var canConstruct = function (ransomNote, magazine) {
   for (const s of magazine) {
     strArr[s.charCodeAt() - base]++
   }
+  console.log(strArr)
   for (const s of ransomNote) {
     const index = s.charCodeAt() - base
     if (strArr[index] == "0") return false
@@ -11,3 +12,6 @@ var canConstruct = function (ransomNote, magazine) {
   }
   return true
 }
+let ransomNote = "aaa",
+  magazine = "aabb"
+canConstruct(ransomNote, magazine)
