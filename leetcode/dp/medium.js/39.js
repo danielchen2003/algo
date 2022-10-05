@@ -34,9 +34,29 @@ var combinationSum = function (c, tar) {
     }
     helper(tar, arr, idx + 1)
     if (tar - c[idx] >= 0) {
-      helper(tar - c[idx], [...arr, c[idx]], idx)
+      arr.push(c[idx])
+      helper(tar - c[idx], arr, idx)
     }
   }
   helper(tar, [], 0)
+  return res
+}
+
+var combinationSum = function (c, t) {
+  let res = []
+  let len = c.length
+  function dfs(c, arr, t, i) {
+    if (i === len) return
+    if (t < 0) return
+    if (t === 0) {
+      res.push(arr)
+    }
+
+    if (t - c[i] > 0) {
+      dfs(c, [...arr, c[i]], t - c[i], i) //当前位置再尝试一次
+    }
+    dfs(c, arr, t, i + 1) //下一个位置尝试
+  }
+  dfs(c, [], t, 0)
   return res
 }
