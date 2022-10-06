@@ -42,3 +42,25 @@ let isValid2 = function (s) {
 let s = "([{}]){[]}()"
 
 console.log(isValid2(s))
+
+var isValid = function (s) {
+  let s = []()
+  let map = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  }
+  for (let i = 0; i < s.length; i++) {
+    if (map[s[i]] !== undefined) {
+      s.push(s[i])
+      continue
+    } else {
+      let cur = s.pop()
+      if (cur !== s[i]) {
+        return false
+      }
+    }
+  }
+  if (s.length === 0) return true
+  else return false
+}

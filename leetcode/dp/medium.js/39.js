@@ -60,3 +60,8 @@ var combinationSum = function (c, t) {
   dfs(c, [], t, 0)
   return res
 }
+let a = [1, 2]
+let b = [3, 4]
+let c = "a"
+
+console.log(a.push(c))
