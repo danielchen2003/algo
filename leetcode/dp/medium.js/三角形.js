@@ -24,6 +24,7 @@ function point(a, b, c, d) {
 function tri(A, B, C) {
   let ab = [B[0] - A[0], B[1] - A[1]]
   let bc = [B[0] - C[0], B[1] - C[1]]
+  console.log(console.log(ab[1] * bc[0]))
   return Math.abs((ab[0] * bc[1] - ab[1] * bc[0]) / 2.0)
 }
 let a = [2, 2]

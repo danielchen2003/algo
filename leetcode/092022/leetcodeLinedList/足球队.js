@@ -43,6 +43,7 @@ function kteam(arr) {
   for (let i = 0; i < arr.length; i++) {
     arr[i].sort((a, b) => a - b)
   }
+  let k = 1
   arr.sort((a, b) => a[0] - b[0])
   // let res = 1
   let dp = new Array(arr.length).fill(1)
@@ -51,119 +52,119 @@ function kteam(arr) {
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < i; j++) {
       if (canArrange(arr[i], arr[j])) {
-        console.log(dp)
         dp[i] = Math.max(dp[i - 1], dp[j] + 1)
         // res = Math.max(dp[i], res)
-      } else {
-        console.log("shibaitiaoguo" + dp)
+        console.log(dp)
+        k = Math.max(dp[i], k)
       }
     }
   }
-  return dp[arr.length - 1] == arr.length
+
+  console.log(dp[arr.length - 1] == arr.length)
+
+  return k
 }
 let c = [
   [1, 2, 3],
 
-  [3, 5, 4],
-  [6, 9, 7],
+  [3, 4, 5],
+  [3, 4, 5],//前面最多几个足球队可以形成排列 目前是1 个因为第二排不行
   [10, 11, 12],
 ]
-console.log(kteam(c))[
-  // bool canArrange(vector<int> &A, vector<int> &B) {
-  //   int teamA = 0;
-  //   int teamB = 0;
+console.log(kteam(c))
+// bool canArrange(vector<int> &A, vector<int> &B) {
+//   int teamA = 0;
+//   int teamB = 0;
 
-  //   // First check if two teams can arrange photo
-  //   for (int i = 0; i < A.size(); ++i) {
-  //       if (A[i] < B[i]) {
-  //           teamA++;
-  //       } else if (B[i] < A[i]) {
-  //           teamB++;
-  //       }
-  //   }
+//   // First check if two teams can arrange photo
+//   for (int i = 0; i < A.size(); ++i) {
+//       if (A[i] < B[i]) {
+//           teamA++;
+//       } else if (B[i] < A[i]) {
+//           teamB++;
+//       }
+//   }
 
-  //   // team A is in front
-  //   if (teamA == A.size()) {
-  //       return true;
-  //   }
+//   // team A is in front
+//   if (teamA == A.size()) {
+//       return true;
+//   }
 
-  //   // team B is in front
-  //   return teamB == B.size();
-  // }
+//   // team B is in front
+//   return teamB == B.size();
+// }
 
-  // int findKTeams(vector<vector<int>> teams) {
-  //   int k = 1;
+// int findKTeams(vector<vector<int>> teams) {
+//   int k = 1;
 
-  //   // sort all teams separately by their player height
-  //   for (int i = 0; i < teams.size(); ++i) {
-  //       sort(teams[i].begin(), teams[i].end());
-  //   }
+//   // sort all teams separately by their player height
+//   for (int i = 0; i < teams.size(); ++i) {
+//       sort(teams[i].begin(), teams[i].end());
+//   }
 
-  //   // sort teams based on height in increasing order
-  //   sort(teams.begin(), teams.end());
+//   // sort teams based on height in increasing order
+//   sort(teams.begin(), teams.end());
 
-  //   int n = (int)teams.size();
+//   int n = (int)teams.size();
 
-  //   vector<int> dp(n, 1);
+//   vector<int> dp(n, 1);
 
-  //   for (int i = 1; i < n; ++i) {
-  //       // check current team with previous team
-  //       // if they can arrange photo choose both teams
-  //       // then current team is new previous team
-  //       for (int j = 0; j < i; ++j) {
-  //           if (canArrange(teams[i], teams[j])) {
-  //               dp[i] = max(dp[i], dp[j] + 1);
-  //               k = max(dp[i], k);
-  //           }
-  //       }
-  //   }
+//   for (int i = 1; i < n; ++i) {
+//     check current team with previous team
+//     if they can arrange photo choose both teams
+//     then current team is new previous team
+//     for (int j = 0; j < i; ++j) {
+//         if (canArrange(teams[i], teams[j])) {
+//             dp[i] = max(dp[i], dp[j] + 1);
+//             k = max(dp[i], k);
+//         }
+//     }
+// }
 
-  //   /*
-  //           step 1
-  //           ------
-  //           1 2 3 <- previous
-  //           2 3 4 <- current CAN ARRANGE
-  //           2 3 4
-  //           4 5 6
+//   /*
+//           step 1
+//           ------
+//           1 2 3 <- previous
+//           2 3 4 <- current CAN ARRANGE
+//           2 3 4
+//           4 5 6
 
-  //           step 2
-  //           ------
-  //           1 2 3  <- previous
-  //           2 3 4
-  //           2 3 4 <- current CAN ARRANGE
-  //           4 5 6
+//           step 2
+//           ------
+//           1 2 3  <- previous
+//           2 3 4
+//           2 3 4 <- current CAN ARRANGE
+//           4 5 6
 
-  //           step 3
-  //           ------
-  //           1 2 3 <- previous
-  //           2 3 4
-  //           2 3 4
-  //           4 5 6 <- current CAN ARRANGE
+//           step 3
+//           ------
+//           1 2 3 <- previous
+//           2 3 4
+//           2 3 4
+//           4 5 6 <- current CAN ARRANGE
 
-  //           step 4
-  //           ------
-  //           1 2 3
-  //           2 3 4  <- previous
-  //           2 3 4  <- current CAN NOT ARRANGE
-  //           4 5 6
+//           step 4
+//           ------
+//           1 2 3
+//           2 3 4  <- previous
+//           2 3 4  <- current CAN NOT ARRANGE
+//           4 5 6
 
-  //           step 5
-  //           ------
-  //           1 2 3
-  //           2 3 4  <- previous
-  //           2 3 4
-  //           4 5 6  <- current CAN ARRANGE
+//           step 5
+//           ------
+//           1 2 3
+//           2 3 4  <- previous
+//           2 3 4
+//           4 5 6  <- current CAN ARRANGE
 
-  //          step 6
-  //           ------
-  //           1 2 3
-  //           2 3 4
-  //           2 3 4  <- previous
-  //           4 5 6  <- current CAN ARRANGE
+//          step 6
+//           ------
+//           1 2 3
+//           2 3 4
+//           2 3 4  <- previous
+//           4 5 6  <- current CAN ARRANGE
 
-  //   */
+//   */
 
-  //   return k;
-  // }
-
- 
+//   return k;
+// }
