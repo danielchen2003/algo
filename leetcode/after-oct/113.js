@@ -33,3 +33,32 @@ let pathSum = function (root, targetSum) {
   }
   return resArr
 }
+
+var pathSum = function (root, targetSum) {
+  let res = []
+
+  function bfs(root, targetSum, path) {
+    if (!root.left && !root.right && targetSum === 0) {
+      res.push([...path])
+      return
+    }
+
+    if (root.left) {
+      targetSum - root.val
+      path.push(root.left)
+      bfs(root.left, targetSum, path)
+      path.pop()
+      targetSum + root.val
+    }
+    if (root.right) {
+      targetSum - root.val
+      path.push(root.right)
+      bfs(root.right, targetSum, path)
+      path.pop()
+      targetSum + root.val
+    }
+    return
+  }
+  bfs(root, targetSum - root.val, [])
+  return res
+}
