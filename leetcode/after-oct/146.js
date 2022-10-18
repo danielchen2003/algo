@@ -34,3 +34,35 @@ LRUCache.prototype.put = function (key, value) {
     this.map.delete(this.map.keys().next().value)
   }
 }
+
+var LRUCache = function (capacity) {
+  this.size = capacity
+  this.lru = new Map()
+}
+
+/**
+ * @param {number} key
+ * @return {number}
+ */
+LRUCache.prototype.get = function (key) {
+  if (this.lru.has(key)) {
+    return this.lru.get(key)
+  }
+}
+
+/**
+ * @param {number} key
+ * @param {number} value
+ * @return {void}
+ */
+LRUCache.prototype.put = function (key, value) {
+  if (this.lru.has(key)) {
+    this.lur.delete(key)
+    this.lur.set(key, value)
+  } else {
+    set(key, value)
+    if (this.lru.size() > this.size) {
+      this.lru.delete(this.lru.keys().next().value)
+    }
+  }
+}
