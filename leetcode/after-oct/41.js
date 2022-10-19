@@ -7,7 +7,7 @@ var firstMissingPositive = function (nums) {
       arr[v] = 1
     }
   })
-
+  console.log(arr)
   if (!arr.length) return 1
 
   for (let i = 1; i < arr.length; i++) {
