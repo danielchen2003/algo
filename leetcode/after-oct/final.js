@@ -28,5 +28,19 @@
 // let str = "ab"
 // console.log(letterCombinations(str))
 
-text = "  this   is  a sentence "
-console.log(text.split(" "))
+// text = "  this   is  a sentence "
+// console.log(text.trim().replace(/ +/g, " ").split(" "))
+
+var wiggleSort = function (nums) {
+  nums.sort((a, b) => a - b)
+  let l = nums.slice(0, Math.ceil(nums.length / 2)).reverse()
+  console.log(l)
+  let r = nums.slice(Math.ceil(nums.length / 2)).reverse()
+  console.log(r)
+  for (let i = 0; i * 2 < nums.length; i++) nums[2 * i] = l[i]
+  for (let i = 0; i * 2 + 1 < nums.length; i++) nums[2 * i + 1] = r[i]
+  console.log(nums)
+}
+
+let nums = [1, 5, 1, 1, 6, 4]
+wiggleSort(nums)
