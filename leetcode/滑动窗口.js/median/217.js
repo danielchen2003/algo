@@ -1,8 +1,23 @@
-var containsDuplicate = function (nums) {
-  let set1 = new Set([...nums])
-  console.log(set1.size)
-  if (set1.size === nums.length) return false
-  else return true
+let map = new Map(1:1)
+console.log(map.has([1, 1]))
+void BFS()
+{
+    定义队列;
+    定义备忘录，用于记录已经访问的位置；
+
+    判断边界条件，是否能直接返回结果的。
+
+    将起始位置加入到队列中，同时更新备忘录。
+
+    while (队列不为空) {
+        获取当前队列中的元素个数。
+        for (元素个数) {
+            取出一个位置节点。
+            判断是否到达终点位置。
+            获取它对应的下一个所有的节点。
+            条件判断，过滤掉不符合条件的位置。
+            新位置重新加入队列。
+        }
+    }
+
 }
-let nums = [1, 2, 3, 4]
-containsDuplicate(nums)
